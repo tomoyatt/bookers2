@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :ensure_current_user, {only: [:edit, :update]}
+  
   def ensure_current_user
     @user = User.find(params[:id])
     if @user != current_user
@@ -9,11 +10,13 @@ class UsersController < ApplicationController
   
   def index
     @users = User.all
+    @book = Book.new
   end
 
   def show
     @user = User.find(params[:id])
     @books = @user.books
+    @book = Book.new
   end
 
   def edit
